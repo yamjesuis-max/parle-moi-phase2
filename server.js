@@ -294,15 +294,23 @@ app.use((err, req, res, next) => {
 });
 
 // Démarrage du serveur
-app.listen(PORT, () => {
-  console.log(`🚀 Serveur Parle-moi démarré sur le port ${PORT}`);
-  console.log(`📡 Endpoints disponibles:`);
-  console.log(`   POST /chat - Conversation avec IA`);
-  console.log(`   POST /stt  - Transcription audio`);
-  console.log(`   POST /tts  - Synthèse vocale`);
-  console.log(`   GET  /health - État du serveur`);
-  console.log(`\n⚠️  N'oubliez pas de configurer le fichier .env avec votre clé OpenAI`);
-});
+
+
+  
+  // Lancer le serveur seulement en local
+if (require.main === module) {
+  app.listen(PORT, () => console.log(`Serveur Parle-moi démarré sur le port ${PORT}`));
+}
+
+// Exporter l'app pour Vercel (mode serverless)
+module.exports = app;
+
+  
+  
+  
+
+  
+
 
 // Nettoyage des fichiers temporaires au démarrage
 const uploadsDir = path.join(__dirname, 'uploads');
