@@ -230,5 +230,6 @@ Pour toute question technique, consultez la documentation OpenAI :
 
 ---
 
-**Version:** 2.0.0  
-**Dernière mise à jour:** 4 octobre 2025
+**Version:** 2.1.0  
+**Dernière mise à jour:** 5 octobre 2025 — Correction du déploiement backend (Render/Vercel)
+
