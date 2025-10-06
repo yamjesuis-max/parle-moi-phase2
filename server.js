@@ -313,7 +313,17 @@ module.exports = app;
 
 
 // Nettoyage des fichiers temporaires au démarrage
-const uploadsDir = path.join(__dirname, 'uploads');
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir);
-}
+
+
+// ✅ Correction pour Vercel : dossier temporaire autorisé
+- const uploadsDir = path.join(__dirname, 'uploads');
+- if (!fs.existsSync(uploadsDir)) {
+-   fs.mkdirSync(uploadsDir);
+- }
++ const uploadsDir = '/tmp/uploads';
++ if (!fs.existsSync(uploadsDir)) {
++   fs.mkdirSync(uploadsDir, { recursive: true });
++ }
+
+  
+
