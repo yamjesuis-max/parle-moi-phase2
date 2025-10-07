@@ -31,11 +31,11 @@ const limiter = rateLimit({
   max: 50, // 50 requêtes max par IP
   message: { error: 'Trop de requêtes, veuillez réessayer plus tard.' },
 });
-app.use(limiter);
+
 
 // Configuration Multer pour upload audio
 const upload = multer({
-  dest: 'uploads/',
+  dest: '/tmp/uploads',
   limits: { fileSize: 25 * 1024 * 1024 }, // 25MB max
   fileFilter: (req, file, cb) => {
     const allowedTypes = ['audio/mpeg', 'audio/mp4', 'audio/wav', 'audio/webm', 'audio/m4a'];
@@ -47,14 +47,7 @@ const upload = multer({
   },
 });
 
-// Prompt système pour Parle-moi
-const getSystemPrompt = (language = 'fr') => {
-  if (language === 'en') {
-    return `You are a compassionate listening assistant named Parle-moi.
-Your role is to provide a safe, judgment-free space for users to express their emotions and thoughts.
 
-Principles:
-- Active and empathetic listening
 - Validate emotions without judgment
 - Ask open-ended questions to encourage expression
 - Gently suggest well-being techniques (breathing, meditation) when appropriate
