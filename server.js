@@ -315,8 +315,9 @@ module.exports = app;
 - }
 + const uploadsDir = '/tmp/uploads';
 + if (!fs.existsSync(uploadsDir)) {
-+   fs.mkdirSync(uploadsDir, { recursive: true });
++   fs.mkdirSync(uploadsDir, { recursive: true }); 
 + }
+// redeploy trigger
 
   
 
